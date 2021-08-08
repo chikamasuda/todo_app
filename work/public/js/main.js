@@ -4,7 +4,15 @@
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            checkbox.parentNode.submit();
+           const url = '?action=toggle';
+           const options = {
+               method: 'POST',
+               body: new URLSearchParams({
+                   id:,
+                   token: ,
+               }),
+           };
+           fetch(url,options)
         });
     });
 
