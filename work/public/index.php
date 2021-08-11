@@ -7,7 +7,6 @@ use MyApp\Utils;
 require_once(__DIR__ . '/../app/config.php');
 
 $pdo = Database::getInstance();
-
 $todo = new Todo($pdo);
 $todo->processPost();
 $todos = $todo->getAll();
@@ -38,11 +37,7 @@ $todos = $todo->getAll();
     <ul>
       <?php foreach ($todos as $todo) : ?>
         <li>
-          <form action="?action=toggle" method="post">
-            <input type="checkbox" <?= $todo->is_done ? 'checked' : ''; ?>>
-            <input type="hidden" name="id" value="<?= Utils::h($todo->id); ?>">
-            <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-          </form>
+          <input type="checkbox" data-id="<?= $todo->is_done ? 'checked' : ''; ?>" data-token="<?= Utils::h($_SESSION['token']); ?>">
           <span class="<?= $todo->is_done ? 'done' : ''; ?>">
             <?= Utils::h($todo->title); ?>
           </span>

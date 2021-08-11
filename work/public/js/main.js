@@ -4,15 +4,15 @@
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-           const url = '?action=toggle';
-           const options = {
-               method: 'POST',
-               body: new URLSearchParams({
-                   id:,
-                   token: ,
-               }),
-           };
-           fetch(url,options)
+            fetch('?action=toggle', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    id: checkbox.dataset.id,
+                    token: checkbox.dataset.token,
+                }),
+            });
+
+            checkbox.nextElementSibling.classList.toggle('done');
         });
     });
 
@@ -34,4 +34,3 @@
         purge.parentNode.submit();
     });
 }
-
