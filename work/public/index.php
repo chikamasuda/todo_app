@@ -25,10 +25,11 @@ $todos = $todo->getAll();
   <main>
     <header>
       <h1>Todos</h1>
-      <form action="?action=purge" method="post" class="delete-form">
-        <span class="purge">Purge</span>
-        <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-      </form>
+      <span
+        data-token="<?= Utils::h($_SESSION['token']); ?>"
+        class="purge">
+        Purge
+      </span>
     </header>
     <form action="?action=add" method="post">
       <input type="text" name="title" placeholder="Type new todo.">
@@ -37,13 +38,13 @@ $todos = $todo->getAll();
     <ul>
       <?php foreach ($todos as $todo) : ?>
         <li>
-          <input type="checkbox" data-id="<?= $todo->is_done ? 'checked' : ''; ?>" data-token="<?= Utils::h($_SESSION['token']); ?>">
+          <input type="checkbox" 
+            data-id="<?= $todo->is_done ? 'checked' : ''; ?>" 
+            data-token="<?= Utils::h($_SESSION['token']); ?>"
+          >
           <span><?= Utils::h($todo->title); ?></span>
 
-          <span 
-            data-id="<?= Utils::h($todo->id); ?>"
-            data-token="<?= Utils::h($_SESSION['token']); ?>"
-            class="delete">
+          <span data-id="<?= Utils::h($todo->id); ?>" data-token="<?= Utils::h($_SESSION['token']); ?>" class="delete">
             ×
           </span>
         </li>
