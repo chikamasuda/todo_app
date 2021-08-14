@@ -38,14 +38,14 @@ $todos = $todo->getAll();
       <?php foreach ($todos as $todo) : ?>
         <li>
           <input type="checkbox" data-id="<?= $todo->is_done ? 'checked' : ''; ?>" data-token="<?= Utils::h($_SESSION['token']); ?>">
-          <span class="<?= $todo->is_done ? 'done' : ''; ?>">
-            <?= Utils::h($todo->title); ?>
+          <span><?= Utils::h($todo->title); ?></span>
+
+          <span 
+            data-id="<?= Utils::h($todo->id); ?>"
+            data-token="<?= Utils::h($_SESSION['token']); ?>"
+            class="delete">
+            ×
           </span>
-          <form action="?action=delete" method="post" class="delete-form">
-            <span class="delete">×</span>
-            <input type="hidden" name="id" value="<?= Utils::h($todo->id); ?>">
-            <input type="hidden" name="token" value="<?= Utils::h($_SESSION['token']); ?>">
-          </form>
         </li>
       <?php endforeach; ?>
     </ul>
